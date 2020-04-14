@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Sync Filter Packer</title>
+  <link rel="stylesheet"
+        href="./styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Sync Subreddit Filter Packer</h1>
+  </header>
+  <div class="content">
+    <div class="card">
+      <div class="card-title">
+        Welcome to Sync Subreddit filter Packer
+      </div>
+      <div class="card-footer">
+        This web app is designed to generate a reddit sync settings file with bulk subreddit filters.
+        <br>
+        Currently only works with subreddits.
+        <br>
+        Filter files should be json in the following format:
+        <br>
+        <code>
+          { "filter_subreddit" : ["sub1", "sub2"] }
+        </code>
+        <br>
+        where sub1 and sub2 are the subreddits to be filtered, you can add as many or as few as you like.
+        <br>
+        All the code on your device, no servers side code and nothing is uploaded anywhere.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        Load your settings and custom filters files
+      </div>
+      <input type="file"
+             id="file-input" />
+      <div class="card-footer">
+        Backup your sync settings from the settings menu, and load the file here.
+        Your settings are only used to extract filters that you might have.
+        <br>
+        You can load as many files as you want, the filters will be appended on each file load.
+        <br>
+        All the processing is done on your device. Nothing is uploaded to servers.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        Predefined filters
+      </div>
+      <div id="button-container"></div>
+      <div class="card-footer">
+        Filters that are predefined for your convenience.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        Extra filters
+      </div>
+      <textarea name="extra"
+                id="extra-filters-input"
+                cols="50"
+                rows="5"></textarea>
+      <br>
+      <button onclick="applyExtras()">Apply</button>
+      <div class="card-footer">
+        User added filters.
+        <br>
+        Comma separated.
+        <br>
+        Having r/ in subreddit names is not reuquired, names can include it or not.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        Download your generated filters
+      </div>
+      <button onclick="download()">Download file</button>
+      <div class="card-footer">
+        The generated settings file, to use it, copy the file to your Sync backup directory.
+        <br>
+        Then go to Sync settings, restore backup and select <code>sync_backup_filters.json</code> from the list.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        List of subreddits to be filtered out
+        <div class="card-footer no-margin">
+          A preview of all the subreddits that will be filtered out.
+        </div>
+      </div>
+      <code id="file-content">None</code>
+    </div>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>
